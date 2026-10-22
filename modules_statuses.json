@@ -1,4 +1,6 @@
 {
-    "Karyawan": true,
-    "Master": true
+    "Auth": true,
+    "Admin": true,
+    "Produksi": true,
+    "Qct": true
 }

@@ -1,0 +1,8377 @@
+{
+  "waktu": "2026-10-21T19:15:36.611Z",
+  "runner": "mini-runner.cjs (pengganti Newman)",
+  "request": 582,
+  "lulus": 928,
+  "gagal": 0,
+  "hasil": [
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login tanpa isi (validasi)",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Username wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Password wajib diisi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login dengan password salah",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Username atau password salah, atau akun tidak aktif.",
+          true
+        ],
+        [
+          "Tetap di halaman login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login akun Non-Aktif ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Username atau password salah, atau akun tidak aktif.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login karyawan yang sudah keluar ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Karyawan sudah tidak aktif.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login tanpa token CSRF ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 419,
+      "tes": [
+        [
+          "Status 419",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Akses dashboard tanpa login ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Dashboard direktur",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Hendra Wijaya",
+          true
+        ],
+        [
+          "Halaman berisi: Direktur",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka login saat sudah login dialihkan ke dashboard",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /dashboard",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Dashboard staf",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Rina Marlina",
+          true
+        ],
+        [
+          "Halaman berisi: Admin",
+          true
+        ],
+        [
+          "Halaman berisi: Kepegawaian",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Dashboard supervisor",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Agus Santoso",
+          true
+        ],
+        [
+          "Halaman berisi: Produksi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Dashboard hod",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Dewi Lestari",
+          true
+        ],
+        [
+          "Halaman berisi: HOD",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Dashboard opvisual",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Budi Prasetyo",
+          true
+        ],
+        [
+          "Halaman berisi: Visual",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Dashboard oplab",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Siti Nurhaliza",
+          true
+        ],
+        [
+          "Halaman berisi: Lab",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC01 Login / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Buka halaman login",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Logout tanpa token CSRF ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 419,
+      "tes": [
+        [
+          "Status 419",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Pesan logout tampil di halaman login",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Anda berhasil logout.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Dashboard setelah logout ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Auth / UC02 Logout / Logout tanpa login dialihkan ke login",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Daftar divisi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Admin",
+          true
+        ],
+        [
+          "Halaman berisi: Produksi",
+          true
+        ],
+        [
+          "Halaman berisi: QCT",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form tambah divisi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah divisi tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Kode divisi sudah dipakai.",
+          true
+        ],
+        [
+          "Halaman berisi: Nama divisi wajib diisi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah divisi valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/divisi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Divisi baru tampil",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data divisi berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: Packing",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form ubah divisi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi/04/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: PKG",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Ubah divisi",
+      "method": "PUT",
+      "url": "{{base_url}}/admin/divisi/04",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/divisi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Hasil ubah divisi tampil",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data divisi berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: Packing Benang",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Daftar jabatan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/jabatan",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Direktur",
+          true
+        ],
+        [
+          "Halaman berisi: Operator",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form tambah jabatan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/jabatan/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah jabatan tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/jabatan",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Nama jabatan wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Divisi yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah jabatan valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/jabatan",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/jabatan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form ubah jabatan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/jabatan/06/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Leader",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Ubah jabatan",
+      "method": "PUT",
+      "url": "{{base_url}}/admin/jabatan/06",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/jabatan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Hasil ubah jabatan tampil",
+      "method": "GET",
+      "url": "{{base_url}}/admin/jabatan",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data jabatan berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: Leader QCT",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Daftar area Admin",
+      "method": "GET",
+      "url": "{{base_url}}/admin/area",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: KPG",
+          true
+        ],
+        [
+          "Halaman berisi: Kepegawaian",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form tambah area",
+      "method": "GET",
+      "url": "{{base_url}}/admin/area/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah area tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/area",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Kode area hanya boleh berisi huruf dan angka.",
+          true
+        ],
+        [
+          "Halaman berisi: Nama area wajib diisi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah area valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/area",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/area",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form ubah area",
+      "method": "GET",
+      "url": "{{base_url}}/admin/area/ARSIP/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Arsip",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Ubah area",
+      "method": "PUT",
+      "url": "{{base_url}}/admin/area/ARSIP",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/area",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Nonaktifkan area",
+      "method": "DELETE",
+      "url": "{{base_url}}/admin/area/ARSIP",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/area",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Area tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/admin/area",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data area berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Non-Aktif",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Daftar karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Budi Prasetyo",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Filter karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan?cari=Siti&status_aktif=Aktif",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Siti Nurhaliza",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Detail karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan/2019-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Budi Prasetyo",
+          true
+        ],
+        [
+          "Halaman berisi: opvisual",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Detail karyawan tidak ada (404)",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan/9999-9999",
+      "code": 404,
+      "tes": [
+        [
+          "Status 404",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form tambah karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah karyawan tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Nama karyawan wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Jenis kelamin yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Jabatan yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Grup yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Tanggal masuk harus berupa tanggal yang valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Email harus berupa alamat email yang valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah karyawan valid (Tono)",
+      "method": "POST",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/karyawan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tambah karyawan valid (Sari)",
+      "method": "POST",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/karyawan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / ID karyawan dibuat otomatis",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan?cari=Tono",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 2024-0001",
+          true
+        ],
+        [
+          "Halaman berisi: Tono",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Form ubah karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan/2024-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Tono",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Ubah karyawan",
+      "method": "PUT",
+      "url": "{{base_url}}/admin/karyawan/2024-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/karyawan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Nonaktifkan karyawan",
+      "method": "DELETE",
+      "url": "{{base_url}}/admin/karyawan/2024-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/karyawan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Karyawan tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan?cari=Tono",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data karyawan berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Tono Saputra",
+          true
+        ],
+        [
+          "Halaman berisi: Non-Aktif",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / supervisor ditolak membuka /admin/karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / supervisor ditolak membuka /admin/divisi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / opvisual ditolak membuka /admin/karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / opvisual ditolak membuka /admin/divisi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / direktur ditolak membuka /admin/karyawan",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / direktur ditolak membuka /admin/divisi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/divisi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC03 Kelola Data Karyawan / Tamu membuka /admin/karyawan dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/admin/karyawan",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Daftar akun",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: opvisual",
+          true
+        ],
+        [
+          "Halaman berisi: hod",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Filter akun per role",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user?role=supervisor",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Agus Santoso",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Form tambah akun (hanya karyawan aktif tanpa akun)",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 2024-0002 - Sari",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Tambah akun tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/user",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Karyawan sudah dipakai.",
+          true
+        ],
+        [
+          "Halaman berisi: Username hanya boleh berisi huruf, angka, strip, dan garis bawah.",
+          true
+        ],
+        [
+          "Halaman berisi: Password minimal 6 karakter.",
+          true
+        ],
+        [
+          "Halaman berisi: Role yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Tambah akun untuk karyawan Non-Aktif ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/admin/user",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Karyawan yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Tambah akun valid",
+      "method": "POST",
+      "url": "{{base_url}}/admin/user",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/user",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Akun baru tampil (simpan id)",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user?cari=sari",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Akun pengguna berhasil dibuat.",
+          true
+        ],
+        [
+          "ID akun baru ditemukan",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Form ubah akun",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user/{{user_baru}}/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Sari",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Ubah akun (password dikosongkan)",
+      "method": "PUT",
+      "url": "{{base_url}}/admin/user/{{user_baru}}",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/user",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Hasil ubah akun tampil",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user?cari=sari",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Akun pengguna berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: sari_lab",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Nonaktifkan akun",
+      "method": "DELETE",
+      "url": "{{base_url}}/admin/user/{{user_baru}}",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /admin/user",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Akun tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user?cari=sari",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Akun pengguna berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Non-Aktif",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Nonaktifkan akun sendiri ditolak",
+      "method": "DELETE",
+      "url": "{{base_url}}/admin/user/2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Tidak bisa menonaktifkan akun sendiri.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Buka halaman login (akun yang dinonaktifkan)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Akun yang dinonaktifkan tidak bisa login",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Username atau password salah, atau akun tidak aktif.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / supervisor ditolak membuka /admin/user",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / hod ditolak membuka /admin/user",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / oplab ditolak membuka /admin/user",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC04 Kelola Akun Pengguna / Tamu membuka /admin/user dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/admin/user",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Daftar rekap absensi QCT terverifikasi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Filter rekap per tahun",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi?tahun=2026",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Rekap yang tidak ada / belum terverifikasi (404)",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi/RAB-209901",
+      "code": 404,
+      "tes": [
+        [
+          "Status 404",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / hod ditolak membuka /admin/rekap-absensi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / direktur ditolak membuka /admin/rekap-absensi",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Admin / UC05 Melihat Rekap Absensi QCT / Tamu membuka /admin/rekap-absensi dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Daftar benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: M001",
+          true
+        ],
+        [
+          "Halaman berisi: M004",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Form tambah benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Tambah benang tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Merge sudah dipakai.",
+          true
+        ],
+        [
+          "Halaman berisi: Denier harus berupa bilangan bulat.",
+          true
+        ],
+        [
+          "Halaman berisi: Filamen minimal 1.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Tambah benang valid",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/benang",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Form ubah benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang/M005/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: M005",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Ubah benang",
+      "method": "PUT",
+      "url": "{{base_url}}/produksi/benang/M005",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/benang",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Nonaktifkan benang",
+      "method": "DELETE",
+      "url": "{{base_url}}/produksi/benang/M005",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/benang",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Benang tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang?cari=M005",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data benang berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Merah Muda",
+          true
+        ],
+        [
+          "Halaman berisi: Non-Aktif",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Daftar mesin",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/mesin",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 401-01",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Filter mesin per line",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/mesin?line=403",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 403-01",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Form ubah status mesin",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/mesin/401-05/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 401-05",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Ubah status mesin tidak valid",
+      "method": "PUT",
+      "url": "{{base_url}}/produksi/mesin/401-05",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Status yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Ubah status mesin",
+      "method": "PUT",
+      "url": "{{base_url}}/produksi/mesin/401-05",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/mesin",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Mesin tampil Maintenance",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/mesin?status=Maintenance",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Status mesin berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: 401-05",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Daftar jadwal produksi",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: JDW-20261021-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Form tambah jadwal",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Tambah jadwal tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Merge wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Line yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Posisi akhir harus lebih besar atau sama dengan 5.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Tambah jadwal dengan merge Non-Aktif ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Merge yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Tambah jadwal valid",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/jadwal-produksi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Jadwal baru tampil (ID otomatis)",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi?tanggal=2026-10-22",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Jadwal produksi berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: JDW-20261022-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Form ubah jadwal",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi/JDW-20261022-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: PT Uji Coba",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Ubah jadwal",
+      "method": "PUT",
+      "url": "{{base_url}}/produksi/jadwal-produksi/JDW-20261022-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/jadwal-produksi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Hapus jadwal",
+      "method": "DELETE",
+      "url": "{{base_url}}/produksi/jadwal-produksi/JDW-20261022-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/jadwal-produksi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Jadwal terhapus",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Jadwal produksi berhasil dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / staf ditolak membuka /produksi/benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / staf ditolak membuka /produksi/jadwal-produksi",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / hod ditolak membuka /produksi/benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / hod ditolak membuka /produksi/jadwal-produksi",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / opvisual ditolak membuka /produksi/benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / opvisual ditolak membuka /produksi/jadwal-produksi",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / direktur ditolak membuka /produksi/benang",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / direktur ditolak membuka /produksi/jadwal-produksi",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/jadwal-produksi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC06 Kelola Jadwal Produksi / Tamu membuka /produksi/benang dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/benang",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Daftar doffing",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: DOF-20261021-S1-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Filter doffing tanggal & shift",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing?tanggal=2026-10-21&shift=S2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: DOF-20261021-S2-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Form tambah doffing",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Tambah doffing tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Tanggal doffing wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Shift yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Nomor troly wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Merge yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Jumlah bobbin minimal 1.",
+          true
+        ],
+        [
+          "Halaman berisi: Berat troly harus berupa angka.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Tambah doffing valid",
+      "method": "POST",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/doffing",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Doffing baru tampil (ID otomatis)",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing?tanggal=2026-10-22",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data doffing berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: DOF-20261022-S1-0001",
+          true
+        ],
+        [
+          "Halaman berisi: Belum dicek",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Form ubah doffing",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing/DOF-20261022-S1-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-10",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Ubah doffing",
+      "method": "PUT",
+      "url": "{{base_url}}/produksi/doffing/DOF-20261022-S1-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/doffing",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Hasil ubah doffing tampil",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing?tanggal=2026-10-22",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data doffing berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: T-11",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Hapus doffing",
+      "method": "DELETE",
+      "url": "{{base_url}}/produksi/doffing/DOF-20261022-S1-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /produksi/doffing",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Doffing terhapus",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data doffing berhasil dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Troly yang sudah dicek QCT tidak bisa diubah",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing/DOF-20261021-S1-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Troly sudah dicek QCT, data doffing tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Troly yang sudah dicek QCT tidak bisa dihapus",
+      "method": "DELETE",
+      "url": "{{base_url}}/produksi/doffing/DOF-20261021-S1-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Troly sudah dicek QCT, data doffing tidak bisa dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / staf ditolak membuka /produksi/doffing",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / oplab ditolak membuka /produksi/doffing",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / direktur ditolak membuka /produksi/doffing",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Produksi / UC07 Kelola Data Doffing / Tamu membuka /produksi/doffing dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/produksi/doffing",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Daftar area QCT",
+      "method": "GET",
+      "url": "{{base_url}}/qct/area",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: VIS",
+          true
+        ],
+        [
+          "Halaman berisi: LAB",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Form tambah area QCT",
+      "method": "GET",
+      "url": "{{base_url}}/qct/area/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tambah area QCT tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/area",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Kode area sudah dipakai.",
+          true
+        ],
+        [
+          "Halaman berisi: Nama area wajib diisi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tambah area QCT valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/area",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/area",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Form ubah area QCT",
+      "method": "GET",
+      "url": "{{base_url}}/qct/area/INS/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Inspeksi Akhir",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Ubah area QCT",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/area/INS",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/area",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Nonaktifkan area QCT",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/area/INS",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/area",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Area QCT tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/qct/area",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data area berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Inspeksi Final",
+          true
+        ],
+        [
+          "Halaman berisi: Non-Aktif",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Area milik Admin tidak bisa dibuka HOD (404)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/area/KPG/edit",
+      "code": 404,
+      "tes": [
+        [
+          "Status 404",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Daftar grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: AX",
+          true
+        ],
+        [
+          "Halaman berisi: SS",
+          true
+        ],
+        [
+          "Halaman berisi: CL",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Form tambah grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tambah grade tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/grade",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Grade sudah dipakai.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tambah grade valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/grade",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/grade",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Form ubah grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade/BS/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Benang sisa",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Ubah grade",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/grade/BS",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/grade",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Nonaktifkan grade",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/grade/BS",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/grade",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Grade tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data grade berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Benang sisa produksi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Daftar jenis abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Handling",
+          true
+        ],
+        [
+          "Halaman berisi: OTY",
+          true
+        ],
+        [
+          "Halaman berisi: Hairy",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Form tambah jenis abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tambah jenis abnormal tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Nama abnormal sudah dipakai.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tambah jenis abnormal valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/jenis-abnormal",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Kode jenis abnormal dibuat otomatis",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal?cari=Kotor",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: VS04",
+          true
+        ],
+        [
+          "Halaman berisi: Kotor",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Form ubah jenis abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal/VS04/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Kotor",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Ubah jenis abnormal",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/jenis-abnormal/VS04",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/jenis-abnormal",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Nonaktifkan jenis abnormal",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/jenis-abnormal/VS04",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/jenis-abnormal",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Jenis abnormal tampil Non-Aktif",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data jenis abnormal berhasil dinonaktifkan.",
+          true
+        ],
+        [
+          "Halaman berisi: Kotor Oli",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / supervisor ditolak membuka /qct/grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / supervisor ditolak membuka /qct/jenis-abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / opvisual ditolak membuka /qct/grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / opvisual ditolak membuka /qct/jenis-abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / staf ditolak membuka /qct/grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / staf ditolak membuka /qct/jenis-abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / direktur ditolak membuka /qct/grade",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / direktur ditolak membuka /qct/jenis-abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/jenis-abnormal",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC08 Kelola Data Master QCT / Tamu membuka /qct/grade dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/grade",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Daftar absensi QCT",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Budi Prasetyo",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Filter absensi tanggal & shift",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi?tanggal=2026-10-21&shift=S2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Joko Susilo",
+          true
+        ],
+        [
+          "Halaman berisi: Ayu Pratiwi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Form tambah absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Tambah absensi tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Karyawan wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Tanggal absen wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Shift yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Kode area wajib diisi jika kehadiran adalah Hadir.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Absensi karyawan non-QCT ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Karyawan yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Absensi ganda (karyawan, tanggal, shift sama) ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Karyawan ini sudah diabsen pada tanggal dan shift tersebut.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Tambah absensi valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/absensi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Absensi baru tampil",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi?tanggal=2026-10-20",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data absensi berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: Joko Susilo",
+          true
+        ],
+        [
+          "Halaman berisi: Lab",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Form ubah absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi/ABS-20261020-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Joko Susilo",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Ubah absensi (jadi Sakit)",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/absensi/ABS-20261020-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/absensi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Hasil ubah absensi tampil",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi?tanggal=2026-10-20",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data absensi berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: Sakit",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Hapus absensi",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/absensi/ABS-20261020-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/absensi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Absensi terhapus",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data absensi berhasil dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / opvisual ditolak membuka /qct/absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / supervisor ditolak membuka /qct/absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / staf ditolak membuka /qct/absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC09 Kelola Absensi & Penugasan Area QCT / Tamu membuka /qct/absensi dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Daftar troly (operator Visual)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Area kerja Anda: <strong>Visual</strong>",
+          true
+        ],
+        [
+          "Halaman berisi: Cek Visual",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Filter troly belum dicek",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch?tanggal=2026-10-21&tahap=belum",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-05",
+          true
+        ],
+        [
+          "Halaman berisi: T-06",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Form cek visual tanpa memilih troly",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Pilih troly yang akan dicek dari daftar.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Form cek visual troly T-05",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/create?id_doffing=DOF-20261021-S2-0002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-05",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Simpan cek visual tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Hasil visual yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Simpan cek visual NG",
+      "method": "POST",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch/BTH-20261021-S2-0002",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Detail troly setelah cek visual",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Tambahkan data bobbin abnormal troly ini.",
+          true
+        ],
+        [
+          "Halaman berisi: T-05",
+          true
+        ],
+        [
+          "Halaman berisi: Belum dicek",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Troly yang sudah dicek tidak bisa dicek ulang",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/create?id_doffing=DOF-20261021-S2-0002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Troly ini sudah dicek visual.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Form ubah hasil visual",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0002/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-05",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Ubah hasil visual",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0002",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch/BTH-20261021-S2-0002",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Cek visual troly T-06 (untuk dihapus)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/create?id_doffing=DOF-20261021-S2-0003",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-06",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Simpan cek visual OK",
+      "method": "POST",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch/BTH-20261021-S2-0003",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Hapus cek troly (belum ada abnormal)",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0003",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Cek troly terhapus",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data cek troly berhasil dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Operator Visual ditolak membuka form cek denier",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / hod ditolak membuka /qct/check-batch",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / supervisor ditolak membuka /qct/check-batch",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC12 Cek Visual / Tamu membuka /qct/check-batch dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Daftar troly (operator Lab)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch?tahap=lab",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Area kerja Anda: <strong>Lab</strong>",
+          true
+        ],
+        [
+          "Halaman berisi: T-04",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Operator Lab ditolak membuat cek visual",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/create?id_doffing=DOF-20261021-S2-0003",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Form cek denier troly T-04",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-04",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Simpan cek denier tidak valid",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Hasil denier wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Grade yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Status yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Grade Non-Aktif ditolak",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Grade yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Simpan cek denier valid",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch/BTH-20261021-S2-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Detail troly setelah cek denier",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Hasil cek denier berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: Packing",
+          true
+        ],
+        [
+          "Halaman berisi: Siti Nurhaliza",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / hod ditolak membuka /qct/check-batch/BTH-20261021-S2-0001/denier",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / staf ditolak membuka /qct/check-batch/BTH-20261021-S2-0001/denier",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC13 Cek Denier / Tamu membuka /qct/check-batch/BTH-20261021-S2-0001/denier dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0001/denier",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Daftar abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: ABN-20261021-S1-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Form tambah abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/create?id_doffing=DOF-20261021-S2-0002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: T-05",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Tambah abnormal tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Troly yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Mesin yang dipilih tidak valid.",
+          true
+        ],
+        [
+          "Halaman berisi: Jenis abnormal wajib diisi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Tambah abnormal valid (status Pending)",
+      "method": "POST",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch/BTH-20261021-S2-0002",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Abnormal baru tampil di detail troly",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S2-0002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data bobbin abnormal berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: ABN-20261021-S2-0001",
+          true
+        ],
+        [
+          "Halaman berisi: Pending",
+          true
+        ],
+        [
+          "Halaman berisi: lolos 59",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Form ubah abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: ABN-20261021-S2-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Ubah abnormal",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/abnormal",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Abnormal yang sudah diuji Lab tidak bisa diubah Visual",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S1-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Bobbin ini sudah diuji Lab, data visual tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Form tambah abnormal kedua",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/create?id_doffing=DOF-20261021-S2-0002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Tambah abnormal kedua",
+      "method": "POST",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/check-batch/BTH-20261021-S2-0002",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Hapus abnormal (masih Pending)",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0002",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/abnormal",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Abnormal terhapus",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data abnormal berhasil dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Operator Visual ditolak membuka form uji Lab",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0001/lab",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Daftar abnormal Pending (operator Lab)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal?status=Pending",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: ABN-20261021-S2-0001",
+          true
+        ],
+        [
+          "Halaman berisi: Uji Lab",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Operator Lab ditolak menambah abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/create",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Form uji Lab abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0001/lab",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: ABN-20261021-S2-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Simpan uji Lab tidak valid",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0001/lab",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Actual denier harus berupa angka.",
+          true
+        ],
+        [
+          "Halaman berisi: Elong wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Grade wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Status yang dipilih tidak valid.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Simpan uji Lab valid (Cutting)",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S2-0001/lab",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/abnormal",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Abnormal tampil Cutting",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal?tanggal=2026-10-21&shift=S2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Hasil uji lab abnormal berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: Cutting",
+          true
+        ],
+        [
+          "Halaman berisi: 75.50",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / hod ditolak membuka /qct/abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / supervisor ditolak membuka /qct/abnormal",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC14 Kelola Data Abnormal Benang / Tamu membuka /qct/abnormal dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Daftar sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: SMP-20261021-S1-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Filter sampel per merge",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel?merge=M002",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Hairy",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Form tambah sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Tambah sampel tidak valid",
+      "method": "POST",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Merge wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Tanggal sampel wajib diisi.",
+          true
+        ],
+        [
+          "Halaman berisi: Actual denier harus berupa angka.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Sampel ganda (merge, tanggal, shift sama) ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Sampel merge ini sudah diinput pada tanggal dan shift tersebut.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Tambah sampel valid (OK)",
+      "method": "POST",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/sampel",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Sampel baru tampil",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel?tanggal=2026-10-21&shift=S2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sampel berhasil disimpan.",
+          true
+        ],
+        [
+          "Halaman berisi: SMP-20261021-S2-0001",
+          true
+        ],
+        [
+          "Halaman berisi: OK",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Form ubah sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel/SMP-20261021-S2-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: SMP-20261021-S2-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Ubah sampel (ada abnormal)",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/sampel/SMP-20261021-S2-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/sampel",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Hasil ubah sampel tampil",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel?tanggal=2026-10-21&shift=S2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sampel berhasil diubah.",
+          true
+        ],
+        [
+          "Halaman berisi: OTY",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Hapus sampel",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/sampel/SMP-20261021-S2-0001",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/sampel",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Sampel terhapus",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sampel berhasil dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Operator Visual juga bisa membuka sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: SMP-20261021-S1-0001",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / hod ditolak membuka /qct/sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / supervisor ditolak membuka /qct/sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC15 Kelola Data Sampel / Tamu membuka /qct/sampel dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Daftar laporan per tanggal & shift",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 21-10-2026",
+          true
+        ],
+        [
+          "Halaman berisi: 15-09-2026",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Filter laporan belum diverifikasi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check?bulan=2026-10&status=belum",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 21-10-2026",
+          true
+        ],
+        [
+          "Halaman berisi: Belum diverifikasi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Laporan S2 belum lengkap",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20261021-S2",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Belum bisa diverifikasi",
+          true
+        ],
+        [
+          "Halaman berisi: troly belum dicek visual",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Verifikasi laporan yang belum lengkap ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20261021-S2/verifikasi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Laporan belum bisa diverifikasi:",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Laporan S1 lengkap (angka dihitung)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20261021-S1",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Belum diverifikasi",
+          true
+        ],
+        [
+          "Halaman berisi: T-03",
+          true
+        ],
+        [
+          "Halaman berisi: Hairy",
+          true
+        ],
+        [
+          "Halaman berisi: 178",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Verifikasi laporan S1",
+      "method": "POST",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20261021-S1/verifikasi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/laporan-check/LAP-20261021-S1",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Laporan S1 Terverifikasi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20261021-S1",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Laporan berhasil diverifikasi.",
+          true
+        ],
+        [
+          "Halaman berisi: Terverifikasi",
+          true
+        ],
+        [
+          "Halaman berisi: Dewi Lestari",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Verifikasi ulang ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20261021-S1/verifikasi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Laporan ini sudah diverifikasi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Laporan yang tidak ada (404)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check/LAP-20990101-S1",
+      "code": 404,
+      "tes": [
+        [
+          "Status 404",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Ubah cek visual yang sudah diverifikasi ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S1-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Simpan ubah cek visual yang sudah diverifikasi ditolak",
+      "method": "PUT",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S1-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Hapus cek troly yang sudah diverifikasi ditolak",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S1-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Detail troly terkunci (tombol ubah disembunyikan)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S1-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: terkunci",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Form tambah abnormal troly S1",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/create?id_doffing=DOF-20261021-S1-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Tambah abnormal pada data terverifikasi ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/abnormal",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Laporan tanggal dan shift ini sudah diverifikasi HOD.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Cek denier yang sudah diverifikasi ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/qct/check-batch/BTH-20261021-S1-0002/denier",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Uji Lab abnormal yang sudah diverifikasi ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/qct/abnormal/ABN-20261021-S1-0001/lab",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Ubah sampel yang sudah diverifikasi ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel/SMP-20261021-S1-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Hapus sampel yang sudah diverifikasi ditolak",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/sampel/SMP-20261021-S1-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Data sudah diverifikasi HOD, tidak bisa dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Form tambah sampel",
+      "method": "GET",
+      "url": "{{base_url}}/qct/sampel/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Tambah sampel pada data terverifikasi ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/sampel",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Laporan tanggal dan shift ini sudah diverifikasi HOD.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / opvisual ditolak membuka /qct/laporan-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / supervisor ditolak membuka /qct/laporan-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / direktur ditolak membuka /qct/laporan-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC11 Verifikasi Laporan Check QCT / Tamu membuka /qct/laporan-check dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/laporan-check",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Daftar periode rekap absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: September 2026",
+          true
+        ],
+        [
+          "Halaman berisi: Oktober 2026",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Rekap bulan berjalan belum bisa diverifikasi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi/RAB-202610",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Periode belum selesai",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Verifikasi rekap bulan berjalan ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-absensi/RAB-202610/verifikasi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Periode belum selesai, rekap baru bisa diverifikasi setelah akhir bulan.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Rekap absensi September (dihitung)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi/RAB-202609",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Budi Prasetyo",
+          true
+        ],
+        [
+          "Halaman berisi: Siti Nurhaliza",
+          true
+        ],
+        [
+          "Halaman berisi: Belum diverifikasi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Verifikasi rekap absensi September",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-absensi/RAB-202609/verifikasi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/rekap-absensi/RAB-202609",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Rekap absensi Terverifikasi + PDF",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi/RAB-202609",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Rekap absensi berhasil diverifikasi.",
+          true
+        ],
+        [
+          "Halaman berisi: Terverifikasi",
+          true
+        ],
+        [
+          "Halaman berisi: rekap-absensi/RAB-202609.pdf",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / File PDF rekap absensi bisa diunduh",
+      "method": "GET",
+      "url": "{{base_url}}/storage/rekap-absensi/RAB-202609.pdf",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "File berupa PDF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Verifikasi ulang ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-absensi/RAB-202609/verifikasi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Rekap absensi periode ini sudah diverifikasi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Absensi September tampil terkunci",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi?tanggal=2026-09-15",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Terkunci",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Ubah absensi terverifikasi ditolak",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi/ABS-20260915-0001/edit",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Absensi bulan ini sudah diverifikasi HOD, tidak bisa diubah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Hapus absensi terverifikasi ditolak",
+      "method": "DELETE",
+      "url": "{{base_url}}/qct/absensi/ABS-20260915-0001",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Absensi bulan ini sudah diverifikasi HOD, tidak bisa dihapus.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Form tambah absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/absensi/create",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Tambah absensi pada periode terverifikasi ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Absensi bulan ini sudah diverifikasi HOD, tidak bisa ditambah.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Rekap terverifikasi tampil untuk Staf Admin",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: September 2026",
+          true
+        ],
+        [
+          "Halaman berisi: Dewi Lestari",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Staf Admin melihat isi rekap",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi/RAB-202609",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Budi Prasetyo",
+          true
+        ],
+        [
+          "Halaman berisi: Unduh PDF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Rekap Oktober (belum terverifikasi) tidak tampil untuk Staf Admin (404)",
+      "method": "GET",
+      "url": "{{base_url}}/admin/rekap-absensi/RAB-202610",
+      "code": 404,
+      "tes": [
+        [
+          "Status 404",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Buka halaman login (opvisual)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Login sebagai opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Dashboard opvisual (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / opvisual ditolak membuka /qct/rekap-absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Logout opvisual",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / staf ditolak membuka /qct/rekap-absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / direktur ditolak membuka /qct/rekap-absensi",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC10 Verifikasi Rekap Absensi Bulanan QCT / Tamu membuka /qct/rekap-absensi dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-absensi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Daftar rekap check per bulan",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: September 2026",
+          true
+        ],
+        [
+          "Halaman berisi: Oktober 2026",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Rekap check September (dihitung)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202609",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: 119",
+          true
+        ],
+        [
+          "Halaman berisi: Handling",
+          true
+        ],
+        [
+          "Halaman berisi: Belum diverifikasi",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Rekap check Oktober (ada laporan belum diverifikasi)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202610",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: laporan shift belum diverifikasi HOD",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Rekap periode tanpa data (404)",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check/RCK-209901",
+      "code": 404,
+      "tes": [
+        [
+          "Status 404",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / hod ditolak membuka /qct/rekap-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Buka halaman login (staf)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Login sebagai staf",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Dashboard staf (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / staf ditolak membuka /qct/rekap-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Logout staf",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Buka halaman login (supervisor)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Login sebagai supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Dashboard supervisor (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / supervisor ditolak membuka /qct/rekap-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Logout supervisor",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Buka halaman login (oplab)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Login sebagai oplab",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Dashboard oplab (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / oplab ditolak membuka /qct/rekap-check",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Logout oplab",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC16 Melihat Rekap Check QCT / Tamu membuka /qct/rekap-check dialihkan ke login",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Buka halaman login (direktur)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Login sebagai direktur",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Dashboard direktur (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Buka rekap Oktober",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202610",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Verifikasi rekap yang laporannya belum lengkap ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202610/verifikasi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Rekap belum bisa diverifikasi:",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Buka rekap September",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202609",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Verifikasi & arsipkan rekap September",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202609/verifikasi",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /qct/rekap-check/RCK-202609",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Rekap Terverifikasi + arsip PDF",
+      "method": "GET",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202609",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Rekap check berhasil diverifikasi dan diarsipkan sebagai PDF.",
+          true
+        ],
+        [
+          "Halaman berisi: Arsip PDF",
+          true
+        ],
+        [
+          "Halaman berisi: Hendra Wijaya",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / UC18 file arsip PDF bisa diunduh",
+      "method": "GET",
+      "url": "{{base_url}}/storage/rekap-check/RCK-202609.pdf",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "File berupa PDF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Verifikasi ulang ditolak",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202609/verifikasi",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Halaman berisi: Rekap check periode ini sudah diverifikasi.",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Logout direktur",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Buka halaman login (hod)",
+      "method": "GET",
+      "url": "{{base_url}}/login",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ],
+        [
+          "Form login punya token CSRF",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Login sebagai hod",
+      "method": "POST",
+      "url": "{{base_url}}/login",
+      "code": 302,
+      "tes": [
+        [
+          "Login berhasil (redirect, tidak kembali ke /login)",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Dashboard hod (ambil token)",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard",
+      "code": 200,
+      "tes": [
+        [
+          "Status 200",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / HOD ditolak memverifikasi rekap check",
+      "method": "POST",
+      "url": "{{base_url}}/qct/rekap-check/RCK-202610/verifikasi",
+      "code": 403,
+      "tes": [
+        [
+          "Status 403",
+          true
+        ]
+      ]
+    },
+    {
+      "jalur": "Qct / UC17-UC18 Verifikasi & Arsipkan Rekap Check QCT / Logout hod",
+      "method": "POST",
+      "url": "{{base_url}}/logout",
+      "code": 302,
+      "tes": [
+        [
+          "Redirect ke /login",
+          true
+        ]
+      ]
+    }
+  ]
+}

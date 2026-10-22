@@ -1,0 +1,10 @@
+{
+    "name": "web-dty/qct",
+    "description": "Modul Qct aplikasi pencatatan QCT benang DTY",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Qct\\": "app/",
+            "Modules\\Qct\\Database\\Seeders\\": "database/seeders/"
+        }
+    }
+}

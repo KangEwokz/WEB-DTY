@@ -1,0 +1,13 @@
+{
+    "name": "web-dty/auth",
+    "description": "Modul Auth aplikasi pencatatan QCT benang DTY",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Auth\\": "app/",
+            "Modules\\Auth\\Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
+    }
+}

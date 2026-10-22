@@ -1,0 +1,11 @@
+{
+    "name": "Qct",
+    "alias": "qct",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Qct\\Providers\\QctServiceProvider"
+    ],
+    "files": []
+}

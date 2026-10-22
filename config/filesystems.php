@@ -40,7 +40,9 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            // File upload (surat absensi) & PDF rekap disimpan langsung di public/storage,
+            // karena drive proyek bukan NTFS sehingga `php artisan storage:link` tidak bisa membuat link.
+            'root' => public_path('storage'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,

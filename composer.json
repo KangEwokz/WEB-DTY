@@ -7,9 +7,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "barryvdh/laravel-dompdf": "^3.1",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
-        "nwidart/laravel-modules": "13.0",
+        "nwidart/laravel-modules": "^13.0",
         "spatie/laravel-permission": "^8.3"
     },
     "require-dev": {
@@ -74,9 +75,7 @@
             "dont-discover": []
         },
         "merge-plugin": {
-            "include": [
-                "Modules/*/composer.json"
-            ]
+            "include": ["Modules/*/composer.json"]
         }
     },
     "config": {
