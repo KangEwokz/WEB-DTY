@@ -1,0 +1,11 @@
+{
+    "name": "Produksi",
+    "alias": "produksi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Produksi\\Providers\\ProduksiServiceProvider"
+    ],
+    "files": []
+}
