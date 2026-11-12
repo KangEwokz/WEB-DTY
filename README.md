@@ -1,58 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# QCT DTY (DTY-WEB)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web untuk departemen **Draw Textured Yarn (DTY)**: data karyawan, hak akses, produksi per shift, dan rekap laporan.
+Dibangun dengan **Laravel 13** dan **nwidart/laravel-modules**. Kodenya sengaja dibuat basic (Query Builder `DB::table`), dan setiap baris diberi penjelasan di sampingnya.
 
-## About Laravel
+## Fitur
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| Modul | Isi |
+|---|---|
+| **Auth** | Login, dashboard Data Pengguna, Akun Pengguna, Role & Permission |
+| **Admin** | Data Karyawan (dengan foto), master Departemen, Divisi, Jabatan, Area |
+| **Produksi** | Absensi & Penempatan, Doffing, Laporan Akhir Shift (termasuk temuan abnormal per bobbin), Rekap Bulanan (cetak A4) |
+| **Data Master produksi** | Benang, Mesin, Troly, Jenis Abnormal |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Kebutuhan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP **8.3** atau lebih baru, dengan ekstensi `pdo_mysql`, `mbstring`, `fileinfo`
+- Composer 2
+- MySQL 8 (atau MariaDB 10.6+)
+- Git
 
-## Learning Laravel
+Di Windows, semuanya sudah tersedia di [Laragon](https://laragon.org/). Pastikan Laragon sudah **Start All** (MySQL menyala) sebelum mulai.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Cara clone dan menjalankan
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Clone repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/KangEwokz/WEB-DTY.git DTY-WEB
+cd DTY-WEB
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install library PHP
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Folder `vendor/` tidak disimpan di GitHub, jadi langkah ini wajib. Modul di folder `Modules/` ikut terpasang otomatis.
 
-## Code of Conduct
+### 3. Buat file `.env`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+Di Windows (Command Prompt), ganti `cp` dengan `copy`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Lalu buka `.env` dan sesuaikan bagian database bila perlu:
 
-## License
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=dty_web
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Bawaan Laragon: user `root` tanpa password.
+
+### 4. Buat database
+
+Buat database kosong bernama `dty_web`, lewat HeidiSQL/phpMyAdmin atau perintah berikut:
+
+```sql
+CREATE DATABASE dty_web;
+```
+
+### 5. Buat tabel dan isi data awal
+
+```bash
+php artisan migrate --seed
+```
+
+Perintah ini membuat semua tabel dan mengisi data contoh: departemen, divisi, jabatan, area, karyawan, role, permission, akun login, benang, 30 mesin, 15 troly, dan jenis abnormal.
+
+### 6. Jalankan aplikasi
+
+```bash
+php artisan serve
+```
+
+Buka **http://localhost:8000**.
+
+## Akun login bawaan
+
+Semua akun memakai password **`password123`**.
+
+| Username | Role | Bisa membuka |
+|---|---|---|
+| `superadmin` | Super Admin | Semua halaman, termasuk Role & Permission |
+| `admin` | Admin | Data Karyawan, Data Master organisasi, Akun Pengguna |
+| `supervisor` | Supervisor | Produksi (absensi, doffing, laporan, rekap) dan master produksi |
+| `hod` | HOD | Melihat data karyawan dan produksi |
+| `kadiv_qct` | Kadiv | Melihat data karyawan dan produksi |
+| `direktur` | Direktur | Melihat data karyawan dan produksi |
+| `op_vis`, `op_lab` | Operator | Dashboard saja |
+| `teknisi_elk`, `teknisi_ins` | Teknisi | Dashboard saja |
+| `op_nonaktif` | Operator | Tidak bisa login (contoh akun nonaktif) |
+
+**Penting:** ganti password akun-akun ini (menu Akun Pengguna) sebelum aplikasi dipakai sungguhan.
+
+## Hal yang perlu diketahui
+
+- **Foto karyawan** disimpan langsung di `public/uploads/foto/` (disk `uploads`), jadi tidak perlu `php artisan storage:link`. Folder ini tidak ikut ke GitHub, sehingga foto harus diunggah ulang di komputer baru.
+- **Data yang tidak ikut ke GitHub:** file `.env`, folder `vendor/`, foto karyawan, dan isi database. Data yang sudah diinput di komputer lain tidak ikut ter-clone; kalau ingin dipindahkan, gunakan export/import database (misalnya lewat HeidiSQL).
+- **Drive non-NTFS** (exFAT/FAT32, misalnya flashdisk atau drive data): jika git menampilkan pesan `detected dubious ownership`, daftarkan foldernya sebagai folder aman:
+
+  ```bash
+  git config --global --add safe.directory E:/lokasi/DTY-WEB
+  ```
+
+- **Mengulang database dari awal:** `php artisan migrate:fresh --seed`. Perintah ini **menghapus semua data** lalu mengisi ulang data contoh.
+- **Menambah modul baru:** `php artisan module:make NamaModul`. Jika muncul pesan timeout `composer dump-autoload`, jalankan `composer dump-autoload` secara manual.
+
+## Struktur singkat
+
+```
+Modules/
+├── Auth/       login, dashboard, akun, role & permission, layout utama (sidebar)
+├── Admin/      karyawan & data master organisasi
+└── Produksi/   absensi, doffing, laporan shift, rekap bulanan, master produksi
+public/
+├── Royal-UI/template/   template tampilan (Bootstrap 5)
+└── uploads/             foto karyawan (dibuat otomatis saat upload)
+```
+
+Setiap modul punya `routes/web.php`, `app/Http/Controllers/`, `resources/views/`, dan `database/` (migration & seeder) sendiri.
+
+### Hak akses
+
+Hak akses diatur per **nama route**. Contohnya, role yang punya permission `produksi.doffing.create` boleh membuka form tambah doffing. Pengecekannya dilakukan oleh middleware `akses` (`Modules/Auth/app/Http/Middleware/CekAkses.php`). Pembagian permission ke tiap role bisa diatur dari menu **Role & Permission** (login sebagai `superadmin`).
